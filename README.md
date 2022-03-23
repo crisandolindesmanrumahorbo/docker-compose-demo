@@ -1,0 +1,3 @@
+- Ketika export env ke local, setiap beda terminal, nilai env yg di export akan hilang. Nilai export misal "export POSTGRES_DB=belajar_golang" akan di set pada terminal dimana command ini di run. BEDA TERMINAL, BEDA ENV. Dengan begitu, kalau misal udah di export env nya lewat terminal, "go run main.go" harus di eksekusi di terminal yang sama.
+- POSTGRES_HOST_AUTH_METHOD: trust harus ditambah kalau passwordnya kosong
+- untuk run, run docker dulu, trus run command docker-compose up

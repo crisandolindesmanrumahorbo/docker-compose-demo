@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  crud-go-gin:
+    #    build: crud-go-gin
+    image: crisandolin/crud-go-gin:latest
+    environment:
+      GO_GIN_SERVICE_HOST: "go-gin-postgres:8081"
+    ports:
+      - "8082:8082"
+    #    links:
+    #      - postgres
+    depends_on:
+      - go-gin-postgres
+    restart: always
+  go-gin-postgres:
+    #    build: go-gin-postgres
+    image: crisandolin/go-gin-postgres:v1
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: belajar_golang
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+    #    ports:
+    #    - "8081:8081"
+    #    links:
+    #      - postgres
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    image: library/postgres:13-alpine
+    environment:
+      POSTGRES_DB: belajar_golang
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    expose:
+      - "5432"
+    #    ports:
+    #    - "5432:5432"
+    restart: always
